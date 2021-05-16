@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_shopping/ProfileFile/sellerShop.dart';
+import 'package:student_shopping/shoppingCart/favoriteItem.dart';
 
 class MyAppBar extends StatefulWidget {
   @override
@@ -11,16 +11,10 @@ class _MyAppBarState extends State<MyAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       leading: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => sellerShop()),
-          );
-        },
         child: Container(
           // margin: EdgeInsets.only(right: 10),
           child: Icon(
-            Icons.shopping_cart,
+            Icons.search,
             color: Colors.grey[800],
             size: 27,
           ),

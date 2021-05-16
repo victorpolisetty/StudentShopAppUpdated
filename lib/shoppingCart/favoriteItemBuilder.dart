@@ -1,12 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:student_shopping/shoppingCart/cart.dart';
 
-class Cart_products extends StatefulWidget {
+class FavoriteProducts extends StatefulWidget {
+  final product_detail_name;
+  final product_detail_new_price;
+  final product_detail_picture;
+  final product_detail_description;
+  final product_categoryId;
+
+  FavoriteProducts({
+    this.product_detail_name,
+    this.product_detail_new_price,
+    this.product_detail_picture,
+    this.product_detail_description,
+    this.product_categoryId,
+  });
+
   @override
-  _Cart_productsState createState() => _Cart_productsState();
+  _FavoriteProductsState createState() => _FavoriteProductsState();
 }
 
-class _Cart_productsState extends State<Cart_products> {
+class _FavoriteProductsState extends State<FavoriteProducts> {
+  // Map<String, CartItem> _items = {};
 
+  // void addItem(String pdtid, String name, double price){
+  //   if(_items.containsKey(pdtid)){
+  //     _items.update(pdtid, (existingCartItem) => CartItem(id: DateTime.now().toString(), name: existingCartItem.name, quantity: existingCartItem.quantity+1, price: existingCartItem.price));
+  //   } else {
+  //     _items.putIfAbsent(pdtid, () => CartItem(name: name, id:  DateTime.now().toString(), quantity: 1, price: price));
+  //   }
+  //   setState(() {});
+  // }
 
   var Products_in_cart = [
     {
@@ -35,26 +59,29 @@ class _Cart_productsState extends State<Cart_products> {
     return new ListView.builder(
         itemCount: Products_in_cart.length,
         itemBuilder: (context, index){
-          return Single_cart_product(
+          return Single_Favorite_Product(
+            // cart_prod_name: widget.product_detail_name[index],
+            // cart_prod_qty: widget.product_categoryId[index],
+            // cart_prod_price: widget.product_detail_new_price[index],
+            // cart_prod_picture: widget.product_detail_picture[index],
             cart_prod_name: Products_in_cart[index]["name"],
             cart_prod_color: Products_in_cart[index]["color"],
             cart_prod_qty: Products_in_cart[index]["Qty."],
             cart_prod_size: Products_in_cart[index]["size"],
             cart_prod_price: Products_in_cart[index]["price"],
             cart_prod_picture: Products_in_cart[index]["picture"],
-
           );
         });
   }
 }
-class Single_cart_product extends StatelessWidget {
+class Single_Favorite_Product extends StatelessWidget {
   final cart_prod_name;
   final cart_prod_picture;
   final cart_prod_price;
   final cart_prod_size;
   final cart_prod_color;
   final cart_prod_qty;
-  Single_cart_product({
+  Single_Favorite_Product({
     this.cart_prod_name,
     this.cart_prod_picture,
     this.cart_prod_size,
@@ -83,25 +110,24 @@ class Single_cart_product extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: new Text(cart_prod_size, style: TextStyle(color:Colors.red),),
+                  child: new Text(cart_prod_qty.toString(), style: TextStyle(color:Colors.black),),
                 ),
 //              =============This section is for the product color==============
                 new Padding(padding: const EdgeInsets.fromLTRB(10.0, 8.0, 8.0, 8.0),
-                  child: new Text("Color:"),),
+                  child: new Text("Qty:"),),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: new Text(cart_prod_color, style: TextStyle(color:Colors.red),),
+                  child: new Text(cart_prod_qty.toString(), style: TextStyle(color:Colors.black),),
                 ),
                 new Padding(padding: const EdgeInsets.fromLTRB(10.0, 8.0, 8.0, 8.0),
                   child: new Text("Price:"),),
                 Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: new Text("\$$cart_prod_price", style:TextStyle(color: Colors.red),)
+                    child: new Text("\$$cart_prod_price", style:TextStyle(color: Colors.black),)
                 ),
               ],
             ),
 //        ===============THIS SECTION IS FOR THE PRODUCT PRICE ====================
-
           ],
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Widgets/circleIcon.dart';
+import 'package:student_shopping/Categories/specificCategoryPage.dart';
+
 
 class Categories extends StatelessWidget {
   @override
@@ -12,53 +14,54 @@ class Categories extends StatelessWidget {
 
         scrollDirection: Axis.horizontal,
         children: [
-          CircleIcon(
-            icon: Icon(
-              Icons.computer,
-              color: Colors.grey[200],
-              size: 28,
+          InkWell(
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (context) => SpecificCategoryPage('1'))),
+            child: CircleIcon(
+              icon: Icon(
+                Icons.emoji_people_outlined,
+                color: Colors.grey[200],
+                size: 28,
+              ),
+              color: Colors.green[400],
+
             ),
-            color: Colors.green[400],
           ),
-          CircleIcon(
-            icon: Icon(
-              Icons.mobile_screen_share,
-              color: Colors.grey[200],
-              size: 28,
+          InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => SpecificCategoryPage('2'))),
+            child: CircleIcon(
+              icon: Icon(
+                Icons.sports_football_outlined,
+                color: Colors.grey[200],
+                size: 28,
+              ),
+              color: Colors.purple[500],
             ),
-            color: Colors.purple[500],
           ),
-          CircleIcon(
-            icon: Icon(
-              Icons.book,
-              color: Colors.grey[200],
-              size: 28,
+          InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => SpecificCategoryPage('3'))),
+            child: CircleIcon(
+              icon: Icon(
+                Icons.book_outlined,
+                color: Colors.grey[200],
+                size: 28,
+              ),
+              color: Colors.yellow[800],
             ),
-            color: Colors.yellow[800],
           ),
-          CircleIcon(
-            icon: Icon(
-              Icons.book,
-              color: Colors.grey[200],
-              size: 28,
+          InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => SpecificCategoryPage('4'))),
+            child: CircleIcon(
+              icon: Icon(
+                Icons.miscellaneous_services,
+                color: Colors.grey[200],
+                size: 28,
+              ),
+              color: Colors.red[800],
             ),
-            color: Colors.red[800],
-          ),
-          CircleIcon(
-            icon: Icon(
-              Icons.book,
-              color: Colors.grey[200],
-              size: 28,
-            ),
-            color: Colors.blue[800],
-          ),
-          CircleIcon(
-            icon: Icon(
-              Icons.book,
-              color: Colors.grey[200],
-              size: 28,
-            ),
-            color: Colors.black,
           ),
         ],
       ),

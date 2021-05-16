@@ -13,7 +13,9 @@ class CircleIcon extends StatelessWidget {
       width: 60,
       margin: EdgeInsets.only(left: 17),
       decoration: BoxDecoration(color: color,borderRadius: BorderRadius.circular(50)),
-      child: icon
+      child:
+          icon,
+
     );
   }
 }

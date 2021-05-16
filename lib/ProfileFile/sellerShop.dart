@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:student_shopping/AuthenticationService.dart';
+import 'package:provider/provider.dart';
 import '../ProductFile/addListing.dart';
 
-class sellerShop extends StatefulWidget {
+class sellerShopTab extends StatefulWidget {
   @override
-  _sellerShopState createState() => _sellerShopState();
+  _sellerShopTabState createState() => _sellerShopTabState();
 }
 
-class _sellerShopState extends State<sellerShop> {
+class _sellerShopTabState extends State<sellerShopTab> {
   // final facebookLogin = FacebookLogin();
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,10 @@ class _sellerShopState extends State<sellerShop> {
           elevation: 0.0,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.more_vert),
+              icon: Icon(Icons.exit_to_app_outlined),color: Colors.black,
+              onPressed: (){
+                context.read<AuthenticationService>().signOut();
+              },
             )
           ],
         ),
@@ -116,19 +120,15 @@ class _sellerShopState extends State<sellerShop> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.add_shopping_cart),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => addListing()),
-                        );
-                      },
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.favorite_border),
-                      onPressed: () {},
-                    )
+                    // IconButton(
+                    //   icon: Icon(Icons.add_shopping_cart),
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(builder: (context) => addListing()),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ),

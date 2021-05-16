@@ -1,13 +1,19 @@
 import 'dart:io';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:student_shopping/ProfileFile/sellerShop.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' ;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:permission_handler/permission_handler.dart';
+// import 'package:file_picker/file_picker.dart';
 
-import 'productFB.dart';
+
+
 
 class addListing extends StatefulWidget {
+  // final email;
+  // final pass;
+  // addListing({Key key,this.email,this.pass}) : super(key: key);
   @override
   _addListingState createState() => _addListingState();
 }
@@ -18,14 +24,18 @@ class _addListingState extends State<addListing> {
   TextEditingController quantityController = TextEditingController();
   TextEditingController brandController = TextEditingController();
   TextEditingController categoryController = TextEditingController();
-  final priceController = TextEditingController();
-  ProductService productService = ProductService();
+  TextEditingController priceController = TextEditingController();
+
+  String imageUrl;
+
+  Future<File> imageFile;
   File _image1;
   File _image2;
   File _image3;
-  bool isLoading = false;
 
-  Future<File> imageFile;
+  String userEmail = "";
+  Map data;
+  File file;
 
   Future getImage(int type) async {
     PickedFile pickedImage = await ImagePicker().getImage(
@@ -39,46 +49,18 @@ class _addListingState extends State<addListing> {
     return Scaffold(
         appBar: new AppBar(
           iconTheme: new IconThemeData(color: Colors.grey[800], size: 27),
-          backgroundColor: Colors.grey[200],
+          backgroundColor: Colors.grey[300],
           elevation: 0,
           title: Center(
             child: Text(
-              'Student Shop',
+              'Add Listing',
               style: TextStyle(color: Colors.black),
             ),
           ),
-          actions: [
-            Container(
-              margin: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.notifications,
-                color: Colors.grey[800],
-                size: 27,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => sellerShop()),
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 10),
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.grey[800],
-                  size: 27,
-                ),
-              ),
-            ),
-          ],
         ),
         body: Form(
           key: _formKey,
-          child: isLoading
-              ? Center(child: CircularProgressIndicator())
-              : ListView(children: <Widget>[
+          child: ListView(children: <Widget>[
                   Row(
                     children: <Widget>[
                       Expanded(
@@ -89,19 +71,9 @@ class _addListingState extends State<addListing> {
                                   color: Colors.grey.withOpacity(0.5),
                                   width: 2.5),
                               onPressed: () async {
-
-
-                                final tmpFile =  await getImage(2);
-
-                                setState(() {
-                                  imageFile =  tmpFile;
-                                });
-
-                                _selectImage(
-                                    imageFile,
-                                    1);
+                                // selectFile();
                               },
-                              child: _displayChild1()),
+                              child: _displayChild2()),
                         ),
                       ),
                       Expanded(
@@ -112,7 +84,6 @@ class _addListingState extends State<addListing> {
                                   color: Colors.grey.withOpacity(0.5),
                                   width: 2.5),
                               onPressed: () async {
-
                                 final tmpFile =  await getImage(1);
                                 setState(() {
                                   imageFile =  tmpFile;
@@ -157,13 +128,6 @@ class _addListingState extends State<addListing> {
                       decoration: InputDecoration(
                         hintText: 'Product name',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'You must enter the product name';
-                        } else if (value.length > 10) {
-                          return 'Product name cant have more than 10 letters';
-                        }
-                      },
                     ),
                   ),
                   Padding(
@@ -174,11 +138,6 @@ class _addListingState extends State<addListing> {
                       decoration: InputDecoration(
                         hintText: 'Quantity',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'You must enter the quantity';
-                        }
-                      },
                     ),
                   ),
                   Padding(
@@ -189,11 +148,6 @@ class _addListingState extends State<addListing> {
                       decoration: InputDecoration(
                         hintText: 'Price',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'You must enter the price';
-                        }
-                      },
                     ),
                   ),
                   Padding(
@@ -203,13 +157,6 @@ class _addListingState extends State<addListing> {
                       decoration: InputDecoration(
                         hintText: 'Brand Name',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'You must enter the brand name';
-                        } else if (value.length > 10) {
-                          return 'Brand name cant have more than 10 letters';
-                        }
-                      },
                     ),
                   ),
                   Padding(
@@ -219,21 +166,14 @@ class _addListingState extends State<addListing> {
                       decoration: InputDecoration(
                         hintText: 'Category Name',
                       ),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'You must enter the category name';
-                        } else if (value.length > 10) {
-                          return 'category name cant have more than 10 letters';
-                        }
-                      },
                     ),
                   ),
-                  FlatButton(
-                    color: Colors.red,
-                    textColor: Colors.white,
+                  TextButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]),),
                     child: Text('Add Product'),
                     onPressed: () {
-                      validateAndUpload();
+                      addData();
                     },
                   )
                 ]),
@@ -315,62 +255,30 @@ class _addListingState extends State<addListing> {
     }
   }
 
-  void validateAndUpload() async {
-    if (_formKey.currentState.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-      if (_image1 != null && _image2 != null && _image3 != null) {
-        var selectedSizes = 5;
-        if (selectedSizes == 5) {
-          String imageUrl1;
-          String imageUrl2;
-          String imageUrl3;
 
-         final FirebaseStorage storage = FirebaseStorage.instance;
-          final String picture1 =
-              "1${DateTime.now().microsecondsSinceEpoch.toString()}.jpg";
-          UploadTask task1 = storage.ref().child(picture1).putFile(_image1);
-          final String picture2 =
-              "2${DateTime.now().microsecondsSinceEpoch.toString()}.jpg";
-          UploadTask task2 = storage.ref().child(picture1).putFile(_image2);
-          final String picture3 =
-              "3${DateTime.now().microsecondsSinceEpoch.toString()}.jpg";
-          UploadTask task3 = storage.ref().child(picture1).putFile(_image3);
+  void addData() async {
 
-          TaskSnapshot snapshot1 = await task1.then((snapshot) => snapshot);
-          TaskSnapshot snapshot2 = await task2.then((snapshot) => snapshot);
-
-          task3.then((snapshot3) async {
-            imageUrl1 = await snapshot1.ref.getDownloadURL();
-            imageUrl2 = await snapshot2.ref.getDownloadURL();
-            imageUrl3 = await snapshot3.ref.getDownloadURL();
-            List<String> imageList = [imageUrl1, imageUrl2, imageUrl3];
-
-            productService.uploadProduct(
-                productName: productNameController.text,
-                price: double.parse(priceController.text),
-                images: imageList,
-                quantity: int.parse(quantityController.text));
-            ;
-          });
-          _formKey.currentState.reset();
-          setState(() {
-            isLoading = false;
-          });
-          Fluttertoast.showToast(msg: 'Product Added');
-        } else {
-          setState(() {
-            isLoading = false;
-          });
-          Fluttertoast.showToast(msg: 'select atleast one size');
-        }
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-        Fluttertoast.showToast(msg: 'all images must be provided');
-      }
-    }
+    Map<String,dynamic> demoData = {"Product Name" : productNameController.text,
+      "Quantity" : quantityController.text,
+      "Price" : priceController.text,
+      "Brand" : brandController.text,
+    "Category" : categoryController.text
+    };
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    _firestore.collection('user').doc('test1234@gmail.com').collection('products').add(demoData);
   }
+
+  // Future selectFile() async{
+  //   // final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+  //
+  //   if(result == null){
+  //     return;
+  //   }
+  //   final path = result.files.single.path;
+  //   setState(() {
+  //     file = File(path);
+  //   });
+  //
+  // }
 }
+

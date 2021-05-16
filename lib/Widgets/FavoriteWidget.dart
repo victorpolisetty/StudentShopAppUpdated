@@ -43,7 +43,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
         child: Container(
           child: new IconButton(
               icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
-              color: Colors.red,
+              color: Colors.black,
               onPressed: () {
                 _toggleFavorite();
               }),

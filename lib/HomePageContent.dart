@@ -5,18 +5,19 @@ import 'ProductFile/products.dart';
 import 'Widgets/searchBarWidget.dart';
 import 'Widgets/sectionTitleHeader.dart';
 
-class MyBody extends StatelessWidget {
+class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
         child: Column(
-      children: [
-        SearchBarWidget(),
-        SectionTitle(title: "Categories"),
-        Categories(),
-        SectionTitle(title: "New Arrival"),
-        Products(),
-      ],
-    ));
+          children: [
+            // SearchBarWidget(),
+            SectionTitle(title: "Categories"),
+            Categories(),
+            SectionTitle(title: "Recent Listings"),
+            Products(),
+        ],
+      )
+    );
   }
 }

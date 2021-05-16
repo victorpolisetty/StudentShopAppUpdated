@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:student_shopping/Widgets/appbar.dart';
-import 'package:student_shopping/myBody.dart';
+import 'package:student_shopping/HomePageContent.dart';
 
-class newHomePage extends StatefulWidget {
+class homePageTab extends StatefulWidget {
   @override
-  _newHomePageState createState() => _newHomePageState();
+  _homePageTabState createState() => _homePageTabState();
 }
 
-class _newHomePageState extends State<newHomePage> {
+class _homePageTabState extends State<homePageTab> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           MyAppBar(),
-          MyBody(),
-          // _children[_currentIndex]
+          HomePageBody(),
         ],
       ),
     );
