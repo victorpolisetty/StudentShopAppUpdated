@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:student_shopping/shoppingCart/favoriteItem.dart';
 
 class MyAppBar extends StatefulWidget {
   @override

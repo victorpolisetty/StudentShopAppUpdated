@@ -7,9 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:permission_handler/permission_handler.dart';
 // import 'package:file_picker/file_picker.dart';
 
-
-
-
 class addListing extends StatefulWidget {
   // final email;
   // final pass;

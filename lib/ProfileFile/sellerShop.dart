@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_shopping/AuthenticationService.dart';
 import 'package:provider/provider.dart';
-import '../ProductFile/addListing.dart';
 
-class sellerShopTab extends StatefulWidget {
-  @override
-  _sellerShopTabState createState() => _sellerShopTabState();
-}
-
-class _sellerShopTabState extends State<sellerShopTab> {
-  // final facebookLogin = FacebookLogin();
+class sellerShopTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +24,7 @@ class _sellerShopTabState extends State<sellerShopTab> {
             children: <Widget>[
               Hero(
                 tag:
-                    'https://images.unsplash.com/photo-1598369685311-a22ca3406009?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
+                'https://images.unsplash.com/photo-1598369685311-a22ca3406009?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
                 child: Container(
                   height: 125.0,
                   width: 125.0,
@@ -117,20 +110,6 @@ class _sellerShopTabState extends State<sellerShopTab> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    // IconButton(
-                    //   icon: Icon(Icons.add_shopping_cart),
-                    //   onPressed: () {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(builder: (context) => addListing()),
-                    //     );
-                    //   },
-                    // ),
-                  ],
-                ),
               ),
               buildImages(),
               buildInfoDetail(),
@@ -140,6 +119,7 @@ class _sellerShopTabState extends State<sellerShopTab> {
           )
         ]));
   }
+}
 
   Widget buildImages() {
     return Padding(
@@ -239,4 +219,3 @@ class _sellerShopTabState extends State<sellerShopTab> {
       ),
     );
   }
-}

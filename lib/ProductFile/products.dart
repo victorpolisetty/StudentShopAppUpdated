@@ -3,6 +3,7 @@ import 'package:student_shopping/pages/itemDescription.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:student_shopping/models/itemModel.dart';
 
 class Products extends StatefulWidget {
   @override

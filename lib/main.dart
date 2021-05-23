@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:student_shopping/LoginPage.dart';
 import 'package:student_shopping/home.dart';
+import 'models/favoriteModel.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         StreamProvider(
           create: (context) => context.read<AuthenticationService>().authStateChanges, initialData: null,
         ),
+        ChangeNotifierProvider(
+          create: (context) => FavoriteModel(),
+        )
       ],
       child: MaterialApp(
       debugShowCheckedModeBanner: false,

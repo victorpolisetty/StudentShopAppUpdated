@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_shopping/ProfileFile/sellerShop.dart';
 import 'package:student_shopping/Widgets/FavoriteWidget.dart';
-import 'package:student_shopping/shoppingCart/favoriteItem.dart';
 
 class ProductDetails extends StatefulWidget {
   final product_detail_name;
@@ -89,7 +87,13 @@ bottomNavigationBar: Container(
         InkWell(
           //todo: update list
           child: Container(
-            child: FavoriteWidget(),
+            child: FavoriteWidget(
+              product_name: widget.product_detail_name,
+              product_id: widget.product_categoryId.toString(),
+              product_picture: widget.product_detail_picture,
+              product_price: widget.product_detail_new_price.toString(),
+              product_desc: widget.product_detail_description,
+            ),
           ),
         ),
       ],

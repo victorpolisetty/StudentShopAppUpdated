@@ -56,7 +56,7 @@ class _SpecificCategoryPageState extends State<SpecificCategoryPage> {
             Container(
               margin: EdgeInsets.only(right: 10),
               child: Icon(
-              Icons.notifications,
+              Icons.search,
               color: Colors.grey[800],
               size: 27,
             ),
@@ -66,7 +66,7 @@ class _SpecificCategoryPageState extends State<SpecificCategoryPage> {
         Container(
             margin: EdgeInsets.only(top: 10),
             width: MediaQuery.of(context).size.width,
-            height: 280,
+            height: MediaQuery.of(context).size.height-90,
             child: GridView.builder(
                 itemCount: data == null ? 0 : data.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

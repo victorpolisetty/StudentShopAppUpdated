@@ -14,54 +14,87 @@ class Categories extends StatelessWidget {
 
         scrollDirection: Axis.horizontal,
         children: [
-          InkWell(
-              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                  builder: (context) => SpecificCategoryPage('1'))),
-            child: CircleIcon(
-              icon: Icon(
-                Icons.emoji_people_outlined,
-                color: Colors.grey[200],
-                size: 28,
-              ),
-              color: Colors.green[400],
+          Column(
+            children: [
+              InkWell(
+                onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (context) => SpecificCategoryPage('1'))),
+              child: CircleIcon(
+                icon: Icon(
+                  Icons.emoji_people_outlined,
+                  color: Colors.grey[200],
+                  size: 28,
+                ),
+                color: Colors.green[400],
 
-            ),
-          ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (context) => SpecificCategoryPage('2'))),
-            child: CircleIcon(
-              icon: Icon(
-                Icons.sports_football_outlined,
-                color: Colors.grey[200],
-                size: 28,
               ),
-              color: Colors.purple[500],
             ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                child: Text("Clothes"),
+              )    ]
           ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (context) => SpecificCategoryPage('3'))),
-            child: CircleIcon(
-              icon: Icon(
-                Icons.book_outlined,
-                color: Colors.grey[200],
-                size: 28,
+          Column(
+            children: [
+              InkWell(
+                onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (context) => SpecificCategoryPage('2'))),
+                child: CircleIcon(
+                  icon: Icon(
+                    Icons.sports_football_outlined,
+                    color: Colors.grey[200],
+                    size: 28,
+                  ),
+                  color: Colors.purple[500],
+                ),
               ),
-              color: Colors.yellow[800],
-            ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                child: Text("Sports"),
+              )
+            ],
           ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (context) => SpecificCategoryPage('4'))),
-            child: CircleIcon(
-              icon: Icon(
-                Icons.miscellaneous_services,
-                color: Colors.grey[200],
-                size: 28,
+          Column(
+            children: [
+              InkWell(
+                onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (context) => SpecificCategoryPage('3'))),
+                child: CircleIcon(
+                  icon: Icon(
+                    Icons.book_outlined,
+                    color: Colors.grey[200],
+                    size: 28,
+                  ),
+                  color: Colors.yellow[800],
+                ),
+
               ),
-              color: Colors.red[800],
-            ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                child: Text("Books"),
+              )
+
+            ],
+          ),
+          Column(
+            children: [
+              InkWell(
+                onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (context) => SpecificCategoryPage('4'))),
+                child: CircleIcon(
+                  icon: Icon(
+                    Icons.miscellaneous_services,
+                    color: Colors.grey[200],
+                    size: 28,
+                  ),
+                  color: Colors.red[800],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                child: Text("Misc."),
+              )
+            ],
           ),
         ],
       ),
