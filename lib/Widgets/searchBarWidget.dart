@@ -11,7 +11,7 @@ class SearchBarWidget extends StatelessWidget {
             spreadRadius: -4,
             blurRadius: 13,
             offset: Offset(2, 6),
-            color: Colors.grey[500])
+            color: Colors.grey)
       ],
           borderRadius: BorderRadius.circular(15)),
       child: TextField(

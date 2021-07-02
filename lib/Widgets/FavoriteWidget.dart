@@ -3,7 +3,6 @@ import 'package:student_shopping/models/favoriteModel.dart';
 import 'package:provider/provider.dart';
 import 'package:student_shopping/models/itemModel.dart';
 
-
 class FavoriteWidget extends StatefulWidget {
   final product_name;
   final product_price;
@@ -44,22 +43,20 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
         } else {
           favoriteList.remove(item);
         }
-
       isInFavoritesList ? isInFavoritesList = false : isInFavoritesList = true;
-
     });
   }
-  
+
   bool inFavorites(var favorite, Item item){
     bool isFavorite = favorite.items.contains(item);
     return isFavorite;
   }
 
-
   @override
   Widget build(BuildContext context) {
     var item = new Item(product_id,product_name,product_price,product_picture,product_desc);
-    
+
+
     var isInFavoritesList = context.select<FavoriteModel, bool>(
           (favorite) => inFavorites(favorite, item)
     );

@@ -82,7 +82,7 @@ class sellerShopTab extends StatelessWidget {
                         ),
                         SizedBox(height: 5.0),
                         Text(
-                          'LISTINGS',
+                          'FOLLOWING',
                           style: TextStyle(
                               fontFamily: 'Montserrat', color: Colors.grey),
                         ),
@@ -99,7 +99,7 @@ class sellerShopTab extends StatelessWidget {
                         ),
                         SizedBox(height: 5.0),
                         Text(
-                          'FAVORITES',
+                          'LISTINGS',
                           style: TextStyle(
                               fontFamily: 'Montserrat', color: Colors.grey),
                         )

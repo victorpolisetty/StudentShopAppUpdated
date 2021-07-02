@@ -20,13 +20,12 @@ class Categories extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                     builder: (context) => SpecificCategoryPage('1'))),
               child: CircleIcon(
-                icon: Icon(
+                Colors.green,
+                Icon(
                   Icons.emoji_people_outlined,
                   color: Colors.grey[200],
                   size: 28,
                 ),
-                color: Colors.green[400],
-
               ),
             ),
               Padding(
@@ -40,12 +39,12 @@ class Categories extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                     builder: (context) => SpecificCategoryPage('2'))),
                 child: CircleIcon(
-                  icon: Icon(
+                  Colors.purple,
+                  Icon(
                     Icons.sports_football_outlined,
                     color: Colors.grey[200],
                     size: 28,
                   ),
-                  color: Colors.purple[500],
                 ),
               ),
               Padding(
@@ -60,12 +59,12 @@ class Categories extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                     builder: (context) => SpecificCategoryPage('3'))),
                 child: CircleIcon(
-                  icon: Icon(
+                  Colors.yellow,
+                  Icon(
                     Icons.book_outlined,
                     color: Colors.grey[200],
                     size: 28,
                   ),
-                  color: Colors.yellow[800],
                 ),
 
               ),
@@ -82,12 +81,12 @@ class Categories extends StatelessWidget {
                 onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                     builder: (context) => SpecificCategoryPage('4'))),
                 child: CircleIcon(
-                  icon: Icon(
+                  Colors.red,
+                  Icon(
                     Icons.miscellaneous_services,
                     color: Colors.grey[200],
                     size: 28,
                   ),
-                  color: Colors.red[800],
                 ),
               ),
               Padding(

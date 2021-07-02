@@ -39,7 +39,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
-                  boxShadow: [BoxShadow(spreadRadius: 0, blurRadius: 19, offset: Offset(0, 4), color: Colors.grey[400])],
+                  boxShadow: [BoxShadow(spreadRadius: 0, blurRadius: 19, offset: Offset(0, 4), color: Colors.grey)],
                   image: DecorationImage(image: NetworkImage(widget.product_detail_picture), fit: BoxFit.cover)
                 ),
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:student_shopping/ProductFile/addListing.dart';
+// import 'package:student_shopping/ProductFile/addListing.save';
 import 'package:student_shopping/Widgets/homePageTab.dart';
 import 'package:student_shopping/pages/favoritePage.dart';
 import 'ProfileFile/sellerShop.dart';
-import 'package:student_shopping/Messaging/chat_screen.dart';
+// import 'package:student_shopping/Messaging/chat_screen.dart';
 
 //import 'package:firebase_auth/firebase_auth.dart';
 
@@ -21,8 +21,8 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> tabs = [
     homePageTab(),
     favoritePageTab(),
-    addListing(),
-    ChatScreen(),
+    // addListing(),
+    // ChatScreen(),
     sellerShopTab(),
   ];
   @override

@@ -4,6 +4,7 @@ import 'package:student_shopping/models/favoriteModel.dart';
 import 'package:student_shopping/pages/itemDescription.dart';
 
 class FavoriteProducts extends StatefulWidget {
+
   final product_detail_name;
   final product_detail_new_price;
   final product_detail_picture;
@@ -23,12 +24,12 @@ class FavoriteProducts extends StatefulWidget {
 }
 
 class _FavoriteProductsState extends State<FavoriteProducts> {
-
   @override
   Widget build(BuildContext context) {
     var favoriteList = context.watch<FavoriteModel>();
     return new ListView.builder(
-        itemCount: favoriteList.items.length,
+      itemCount: favoriteList.items.length,
+      // itemCount: data == null ? 0 : data.length,
         itemBuilder: (context, index){
           return Single_Favorite_Product(
             cart_prod_name: favoriteList.items[index].name,
@@ -36,7 +37,11 @@ class _FavoriteProductsState extends State<FavoriteProducts> {
             cart_prod_picture: favoriteList.items[index].imageURL,
             cart_prod_description: favoriteList.items[index].description,
             cart_prod_id: favoriteList.items[index].id,
-
+            // cart_prod_name: data[index]['name'],
+            // cart_prod_price: data[index]['price'],
+            // cart_prod_picture: data[index]['imageURL'],
+            // cart_prod_description: data[index]['description'],
+            // cart_prod_id: data[index]['id'],
           );
         });
   }

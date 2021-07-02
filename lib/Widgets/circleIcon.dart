@@ -4,7 +4,7 @@ class CircleIcon extends StatelessWidget {
   final Color color;
   final Widget icon;
 
-  const CircleIcon({this.color, this.icon});
+  const CircleIcon(this.color, this.icon);
 
   @override
   Widget build(BuildContext context) {

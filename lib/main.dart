@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:student_shopping/LoginPage.dart';
 import 'package:student_shopping/home.dart';
+import 'package:student_shopping/models/recentItemModel.dart';
 import 'models/favoriteModel.dart';
 
 void main() async{
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => FavoriteModel(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => RecentItemModel(),
+        ),
       ],
       child: MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -42,11 +46,11 @@ class MyApp extends StatelessWidget {
 
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({
-    Key key,
+    Key? key,
 }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
+    final firebaseUser = context.watch<User?>();
 
     if(firebaseUser != null){
       return HomePage("Student Shop");

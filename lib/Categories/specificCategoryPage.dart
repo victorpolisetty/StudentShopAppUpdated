@@ -16,7 +16,7 @@ class SpecificCategoryPage extends StatefulWidget {
 
 class _SpecificCategoryPageState extends State<SpecificCategoryPage> {
 
-  List data;
+  List data = [];
   Future<String> getData() async {
     var url = Uri.parse('http://10.0.2.2:8080/item/categoryid?id=${widget.categoryId}');
     http.Response response = await http.get(url, headers: {"Accept": "application/json"});
@@ -30,6 +30,7 @@ class _SpecificCategoryPageState extends State<SpecificCategoryPage> {
     this.setState(() {
     });
 
+    throw 'TODO';
   }
 
   @override

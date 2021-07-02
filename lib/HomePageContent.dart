@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:student_shopping/Categories/categories.dart';
-import 'ProductFile/products.dart';
+import 'ProductFile/recentItems.dart';
 import 'Widgets/searchBarWidget.dart';
 import 'Widgets/sectionTitleHeader.dart';
 

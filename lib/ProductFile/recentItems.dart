@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:student_shopping/pages/itemDescription.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
-import 'package:student_shopping/models/itemModel.dart';
+import 'package:student_shopping/models/recentItemModel.dart';
+
 
 class Products extends StatefulWidget {
   @override
@@ -11,45 +10,27 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  List data;
-  Future<String> getData() async {
-    var url = Uri.parse('http://10.0.2.2:8080/items/');
-    http.Response response = await http.get(url, headers: {"Accept": "application/json"});
-    if (response.statusCode == 200) {
-      data = jsonDecode(response.body) as List;
-      print(data);
-    } else {
-      print (response.statusCode);
-    }
 
-    this.setState(() {
-    });
-
-  }
-
-  @override
-  void initState() {
-    this.getData();
-  }
 
   @override
   Widget build(BuildContext context) {
+    var recentList = context.watch<RecentItemModel>();
     return Container(
         margin: EdgeInsets.only(top: 10),
         width: MediaQuery.of(context).size.width,
         height: 280,
         child: GridView.builder(
-            itemCount: data == null ? 0 : data.length,
+            itemCount: recentList.items.length == null ? 0 : recentList.items.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2),
             itemBuilder: (BuildContext context, int index) {
               // padding: EdgeInsets.only(top: 15.0, left: 15.0, right: 15.0),
               return Single_prodz(
-                  prod_name: data[index]['name'],
-                  prod_picture: data[index]['imageURL'],
-                  prod_price: data[index]['price'],
-                  prod_description: data[index]['description'],
-                  prod_categoryId: data[index]['id']);
+                  prod_name: recentList.items[index].name,
+                  prod_picture: recentList.items[index].imageURL,
+                  prod_price: recentList.items[index].price,
+                  prod_description: recentList.items[index].description,
+                  prod_categoryId:recentList.items[index].id);
             }));
   }
 }
