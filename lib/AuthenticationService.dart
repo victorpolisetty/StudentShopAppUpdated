@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class AuthenticationService{
   final FirebaseAuth _firebaseAuth;
   AuthenticationService(this._firebaseAuth);
-  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges() as Stream<User>;
+  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges() ;
 
   //sign out
   Future<void> signOut() async{
