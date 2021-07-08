@@ -49,18 +49,25 @@ class MyApp extends StatelessWidget {
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({
     Key? key,
-}) : super(key: key);
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<AuthenticationService>().authStateChanges;
+    User? _user;
 
-    if(firebaseUser != null){
+    final firebaseUser = context
+        .watch<AuthenticationService>()
+        .authStateChanges
+        .listen((user) {
+      _user = user;
+    });
+
+    if (_user != null) {
       return HomePage("Student Shop");
     }
     return LoginPage();
   }
 }
-
 // class MyApp extends StatefulWidget {
 //   @override
 //   _MyAppState createState() => _MyAppState();
